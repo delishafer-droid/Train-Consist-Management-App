@@ -1,25 +1,48 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+// Step 1: Create Bogie class
+class Bogie {
+    String name;
+    int capacity;
+
+    // Constructor
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    // toString() for display
+    @Override
+    public String toString() {
+        return "Bogie: " + name + " | Capacity: " + capacity;
+    }
+}
 
 public class TrainConsistManagementApp {
     public static void main(String[] args) {
 
-        System.out.println("\nUC6: Map Bogie to Capacity (HashMap)\n");
-        // Step 1: Create HashMap to store bogie-capacity mapping
-        HashMap<String, Integer> bogieCapacityMap = new HashMap<>();
+        // Step 2: Create List of Bogie objects
+        List<Bogie> bogieList = new ArrayList<>();
+        System.out.println("\n UC7 : Sort Bogies by Capacity \n ");
 
-        // Step 2: Insert bogie capacities
-        bogieCapacityMap.put("Sleeper", 72);
-        bogieCapacityMap.put("AC Chair", 54);
-        bogieCapacityMap.put("First Class", 24);
+        // Step 3: Add bogies
+        bogieList.add(new Bogie("Sleeper", 72));
+        bogieList.add(new Bogie("AC Chair", 54));
+        bogieList.add(new Bogie("First Class", 24));
 
-        // Step 3: Display bogie capacity details
-        System.out.println("Bogie Capacity Details:\n");
+        System.out.println("Before Sorting:\n");
+        for (Bogie b : bogieList) {
+            System.out.println(b);
+        }
 
-        // Step 4: Iterate using entrySet()
-        for (Map.Entry<String, Integer> entry : bogieCapacityMap.entrySet()) {
-            System.out.println("Bogie: " + entry.getKey() +
-                    " | Capacity: " + entry.getValue());
+        // Step 4: Sort using Comparator (by capacity)
+        bogieList.sort(Comparator.comparingInt(b -> b.capacity));
+
+        System.out.println("\nAfter Sorting (Ascending by Capacity):\n");
+        for (Bogie b : bogieList) {
+            System.out.println(b);
         }
     }
 }
